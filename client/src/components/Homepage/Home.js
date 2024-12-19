@@ -15,7 +15,7 @@ export default function Home() {
         </div>
         <div className='Auth-container'>
           <ButtonComp Label={"Login"} to={"/login"}/>
-          <ButtonComp Label={"Signin"} to={"/signin"}/>
+          <ButtonComp Label={"Register"} to={"/register"}/>
           <ButtonComp Label={"dashboard"} to={isLogged?"/dashboard":"#"} disabled={!isLogged}/>
         </div>
       </div>
