@@ -3,11 +3,18 @@ import { UserContext } from '../../Context/UserContext/UserContext'
 import Logout_auth from '../../Authentication/Logout_auth'
 
 function Dashboard() {
-  const { userName, userEmail, userPassword } = useContext(UserContext)
-  console.log(userName, userEmail)
+  const { fullName, 
+          userEmail, 
+          userPassword, 
+          phone,
+          permanentAddress,
+          postOfficeAddress,
+          profilePhoto
+        } = useContext(UserContext)
+  console.log(userEmail)
   return (
     <>
-      <div>This is dashboard, this is {userName}, {userEmail} </div>
+      <div>This is dashboard, this is {fullName}, {userEmail}, {phone}, {permanentAddress}, {postOfficeAddress}, {profilePhoto} </div>
       <Logout_auth/>
     </>
   )

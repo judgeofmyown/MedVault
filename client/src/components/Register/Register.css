@@ -1,0 +1,87 @@
+
+
+.firebase-auth, .firebase-db {
+    flex: 1;
+    padding: 20px;
+}
+.register-container {
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(to right, #bcbcf4, #7e92f5);
+}
+  
+  /* Center for Mobile */
+@media (max-width: 768px) {
+    .register-container {
+      justify-content: center; /* Center for smaller screens */
+      padding: 10px;
+    }
+}
+
+.divider {
+  width: 1px;
+  background-color: #ddd;
+}
+
+.firebase{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+  /* Form Styles */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+  
+.register-form h2 {
+    margin-bottom: 20px;
+    color: #333333;
+}
+  
+.register-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+  
+.register-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+  
+.register-form input:focus {
+    border-color: #26a69a;
+    outline: none;
+    box-shadow: 0 0 5px rgba(38, 166, 154, 0.5);
+}
+
+.register-form p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #777;
+}
+  
+.register-form p a {
+    color: #26a69a;
+    text-decoration: none;
+}
+  
+.register-form p a:hover {
+    text-decoration: underline;
+}
+  
