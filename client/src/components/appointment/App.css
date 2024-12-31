@@ -1,0 +1,60 @@
+.app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.search-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-section input {
+  padding: 10px;
+  font-size: 16px;
+  flex: 1;
+}
+
+.search-section button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-section button:hover {
+  background-color: #0056b3;
+}
+
+form {
+  margin-top: 20px;
+}
+
+form label {
+  display: block;
+  margin: 10px 0;
+}
+
+form input,
+form select {
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+  width: 100%;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
