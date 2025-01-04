@@ -1,20 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebase-config";
+import { auth, db } from "./firebase-config";
 import { UserContext } from "../Context/UserContext/UserContext";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
 
 export const Login_auth = () => {
 
-    const { userEmail,
-            userPassword,
-            userName, 
-            user, 
-            setUser, 
-            setUserEmail, 
-            setUserPassword, 
-            setUserName } = useContext(UserContext);
+    const { userEmail, userPassword, 
+        setUser, 
+        setUserEmail, setUserPassword,
+        setFullName,
+        setPhone,
+        setPermanentAddress,
+        setPostOfficeAddress,
+        setProfilePhoto, } = useContext(UserContext);
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -22,10 +23,14 @@ export const Login_auth = () => {
     const [isRedirecting, setIsRedirecting] = useState(false)
     
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
           if (currentUser) {
-            setUser(currentUser); // Set the user data if a user is logged in
-          } else {
+            const userDoc = await getDoc(doc(db, "users", currentUser.uid)) // Set the user data if a user is logged in
+            if (userDoc.exists()){
+                const data = userDoc.data();
+                setUser(currentUser);
+            }
+        } else {
             setUser(null); // Clear user data if not logged in
           }
         });
@@ -39,7 +44,21 @@ export const Login_auth = () => {
 
         try{
             const userCreds = await signInWithEmailAndPassword(auth, userEmail, userPassword)
+            const currUser = userCreds.user;
             console.log(userCreds)
+            const userDocRef = doc(db, "users", currUser.uid);
+            const userDocSnap = await getDoc(userDocRef);
+
+            if(userDocSnap.exists()){
+                const userData  = userDocSnap.data();
+
+                setFullName(userData.fullName);
+                setPhone(userData.phone);
+                setPermanentAddress(userData.permanentAddress);
+                setPostOfficeAddress(userData.postOfficeAddress);
+                setProfilePhoto(userData.profilePhotoURL)
+            }
+
             setUserEmail(userEmail)
             setUserPassword(userPassword)
 

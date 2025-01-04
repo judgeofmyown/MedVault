@@ -8,6 +8,8 @@ import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "../Authentication/firebase-config"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { storage } from "./firebase-config";
+import { signOut } from "firebase/auth";
+
 
 export const Register_auth = () => {
   const { userEmail, userPassword, 
@@ -52,7 +54,7 @@ export const Register_auth = () => {
     });
 
     return () => unsubscribe(); // Clean up the listener on component unmount
-  }, [setUser]);
+  }, [setUser, fullName, setFullName, setUserEmail, setPhone, setPermanentAddress, setPostOfficeAddress, setProfilePhoto]);
 
 
   const handleRegister = async () => {
@@ -93,6 +95,7 @@ export const Register_auth = () => {
       setPermanentAddress(permanentAddress)
       setPostOfficeAddress(postOfficeAddress)
       setProfilePhoto(profilePhoto)
+
       console.log("user registered", user)
       
       setIsRedirecting(true)
@@ -101,6 +104,14 @@ export const Register_auth = () => {
         navigate("/dashboard")
       }, 1500)  
     } catch (error) {
+      await signOut(auth);
+      setFullName("");
+      setPhone("");
+      setUserEmail("");
+      setUserPassword("");
+      setPermanentAddress("")
+      setPostOfficeAddress("")
+      setProfilePhoto(null)
       setError(error.message);
       console.log("Error during registration:", error.message);
     } finally {

@@ -5,7 +5,14 @@ import { auth } from "./firebase-config";
 import { UserContext } from "../Context/UserContext/UserContext";
 
 const Logout_auth = () => {
-  const { setUser, setUserEmail, setUserPassword, setUserName } = useContext(UserContext);
+  const {  
+    setUser, 
+    setUserEmail, setUserPassword,
+    setFullName,
+    setPhone,
+    setPermanentAddress,
+    setPostOfficeAddress,
+    setProfilePhoto, } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -17,7 +24,13 @@ const Logout_auth = () => {
       setUser(null);
       setUserEmail("");
       setUserPassword("");
-      setUserName("");
+      setFullName("");
+      setPhone("");
+      setUserEmail("");
+      setUserPassword("");
+      setPermanentAddress("")
+      setPostOfficeAddress("")
+      setProfilePhoto(null)
 
       // Redirect to login or home page after logout
       navigate("/login"); // You can change this to whatever route you want to navigate to

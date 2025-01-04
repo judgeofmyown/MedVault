@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './App.css';
+import './Locator.css';
 
-const App = () => {
+const Locator = () => {
   const [location, setLocation] = useState('');
   const [hospitals, setHospitals] = useState([]);
 
@@ -45,4 +45,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Locator;

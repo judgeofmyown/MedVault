@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./app.css";
+import "./Appointment.css";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
@@ -19,7 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-function App() {
+function Appointment() {
   const [hospitals, setHospitals] = useState([]);
   const [selectedHospital, setSelectedHospital] = useState("");
   const [appointmentDetails, setAppointmentDetails] = useState({
@@ -149,4 +149,4 @@ function App() {
   );
 }
 
-export default App;
+export default Appointment;
