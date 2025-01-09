@@ -6,6 +6,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import "./Dashboard.css"
 import Locator from '../locator/Locator'
 import Appointment from '../appointment/Appointment'
+import ApptmntHist from '../AppointmentHistory/ApptmntHist'
 
 function Dashboard() {
   const { fullName, 
@@ -63,7 +64,7 @@ function Dashboard() {
               <img src={profilePhoto} alt="Profile" />
             </div>
             <div className="user-demographs">
-              <h3>{fullName}</h3>
+              <h3>{console.log(fullName)}</h3>
               <p>Email: {userEmail}</p>
               <p>Phone: {phone}</p>
               <p>Permanent Address: {permanentAddress}</p>
@@ -73,10 +74,12 @@ function Dashboard() {
           <div className='features-btn'>
             <button onClick={()=> handleFeatureClick('Locator')}>locator</button>
             <button onClick={()=> handleFeatureClick('Appointment')}>Appointment</button>
+            <button onClick={()=> handleFeatureClick('Appointment History')}>Appointment History</button>
           </div>
           <div className='features-container'>
-            {selectedFeature == 'Locator' && <Locator/>}
-            {selectedFeature == 'Appointment' && <Appointment/>}
+            {selectedFeature === 'Locator' && <Locator/>}
+            {selectedFeature === 'Appointment' && <Appointment/>}
+            {selectedFeature === 'Appointment History' && <ApptmntHist/>}
           </div>
       </div>
       <Logout_auth/>
