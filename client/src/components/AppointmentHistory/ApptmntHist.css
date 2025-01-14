@@ -1,6 +1,5 @@
 /* General Styling */
 body {
-<<<<<<< HEAD
   font-family: 'Arial', sans-serif;
   background-color: #f3f4f6; /* Softer background for better contrast */
   margin: 0;
@@ -127,13 +126,7 @@ body {
     font-size: 0.8rem;
   }
 }
-=======
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-  }
-  
+
   /* Appointment History Container */
   .apptmnt-hist {
     max-width: 600px;
@@ -180,4 +173,4 @@ body {
 
 
   
->>>>>>> 42692b503b78713bf2fc869ac32144804605b6f7
+
