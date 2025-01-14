@@ -10,42 +10,41 @@ export const Login_auth = () => {
 
     const { userEmail, userPassword, 
         setUser, 
-        setUserEmail, setUserPassword,
-        setFullName,
-        setPhone,
-        setPermanentAddress,
-        setPostOfficeAddress,
-        setProfilePhoto, } = useContext(UserContext);
+        setUserEmail, setUserPassword, 
+        setFullName, setPhone, 
+        setPermanentAddress, setPostOfficeAddress, 
+        setProfilePhoto, setIsLogged } = useContext(UserContext); // Added setIsLogged
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const [isRedirecting, setIsRedirecting] = useState(false)
+    const [isRedirecting, setIsRedirecting] = useState(false);
     
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
           if (currentUser) {
             const userDoc = await getDoc(doc(db, "users", currentUser.uid)) // Set the user data if a user is logged in
             if (userDoc.exists()){
-                const data = userDoc.data();
                 setUser(currentUser);
+                setIsLogged(true); // Set the isLogged state to true when logged in
             }
         } else {
             setUser(null); // Clear user data if not logged in
+            setIsLogged(false); // Ensure isLogged is false if not logged in
           }
         });
     
         return () => unsubscribe(); // Clean up the listener on component unmount
-    }, [setUser]);
+    }, [setUser, setIsLogged]);
 
     const handleLogin = async () => {
         setIsLoading(true);
         setError(null);
 
         try{
-            const userCreds = await signInWithEmailAndPassword(auth, userEmail, userPassword)
+            const userCreds = await signInWithEmailAndPassword(auth, userEmail, userPassword);
             const currUser = userCreds.user;
-            console.log(userCreds)
+
             const userDocRef = doc(db, "users", currUser.uid);
             const userDocSnap = await getDoc(userDocRef);
 
@@ -56,36 +55,37 @@ export const Login_auth = () => {
                 setPhone(userData.phone);
                 setPermanentAddress(userData.permanentAddress);
                 setPostOfficeAddress(userData.postOfficeAddress);
-                setProfilePhoto(userData.profilePhotoURL)
+                setProfilePhoto(userData.profilePhotoURL);
             }
 
-            setUserEmail(userEmail)
-            setUserPassword(userPassword)
+            setUserEmail(userEmail);
+            setUserPassword(userPassword);
 
-            setIsRedirecting(true)
-            //   can show a redirecting circle for better user experience
-            setTimeout(()=>{
-                navigate("/dashboard")
-            }, 1500)  
-        }catch(error){
-            setError(error.message)
-            console.log(error)
-        }finally{
-            setIsLoading(false)
+            setIsLogged(true); // Update the context state to true after login
+
+            setIsRedirecting(true); // Start redirect message display
+            setTimeout(() => {
+                navigate("/dashboard"); // Redirect to dashboard after login
+            }, 1500);
+        } catch(error) {
+            setError(error.message);
+            console.log(error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
-    return(
+    return (
         <div>
-            {error && <p style={{ color: 'red' }}>email and password not found</p>}
+            {error && <p style={{ color: 'red' }}>Email and Password do not match! Try again!</p>}
             <button onClick={handleLogin} disabled={isLoading}>
-                {isLoading ? 'Loging in...' : 'LoginIn'}
+                {isLoading ? 'Logging In...' : 'LogIn'}
             </button>
             {isRedirecting && (
-                <div style={{ color: 'red', marginTop: '10px' }}>
-                    Login successful! Redirecting to dashboard...
+                <div style={{ color: '#47E5BC', marginTop: '10px' }}>
+                    Login successful! Redirecting to Dashboard...
                 </div>
             )}
         </div>
-    )
-}
+    );
+};

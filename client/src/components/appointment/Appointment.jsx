@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Appointment.css";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import Patient from "./Patient";
 
 
 // Firebase configuration (replace with your Firebase config)
@@ -16,8 +17,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
 function Appointment() {
   const [hospitals, setHospitals] = useState([]);
@@ -26,7 +27,10 @@ function Appointment() {
     date: "",
     time: "",
   });
+  const [hospitalId, setHospitalId] = useState("");
   const [city, setCity] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [appointmentId, setAppointmentId] = useState("");
 
   // Fetch hospitals based on the entered city
   const fetchHospitals = async () => {
@@ -54,7 +58,8 @@ function Appointment() {
 
   // Handle dropdown change for hospital selection
   const handleHospitalSelect = (e) => {
-    setSelectedHospital(e.target.value);
+    const selectedIdx = e.target.value;
+    setSelectedHospital(hospitals[selectedIdx]);
   };
 
   // Handle input changes for appointment date and time
@@ -71,19 +76,48 @@ function Appointment() {
     e.preventDefault();
     
     if (!selectedHospital || !appointmentDetails.date || !appointmentDetails.time || !city) {
-      alert("Please fill in all fields.");
+      alert(`Please fill in all fields.\nHospital: ${selectedHospital ? selectedHospital.display_name : 'Not selected'}\nDate: ${appointmentDetails.date}\nTime: ${appointmentDetails.time}\nCity: ${city}`);
       return;
     }
-  
+    console.log(JSON.stringify(selectedHospital));
+
+    try {
+      const response = await fetch("http://localhost:3002/api/appointments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(selectedHospital),
+      });
+
+      if (response.ok){
+        const result = await response.json();
+        alert(`Appointment booked successfully: ${result.message}`);
+        setHospitalId(result.organizationId);
+        setShowModal(true);
+        setCity(""); // Reset fields
+        setSelectedHospital(null);
+        setAppointmentDetails({ date: "", time: "" });
+        setHospitals([]);
+      }else{
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message}`);
+      }
+    } catch (error){
+      console.error("Error sending data: ", error);
+      alert("Failed to book appointment, please try again.")
+      return;
+    }
     try {
       // Add a new document to the "appointments" collection
+
       const docRef = await addDoc(collection(db, "appointments"), {
         city: city,
         hospital: selectedHospital,
         date: appointmentDetails.date,
         time: appointmentDetails.time,
-      });
-  
+      });      
+      setAppointmentId(docRef.id);
       alert(`Appointment booked successfully with ID: ${docRef.id}`);
       setCity(""); // Clear the form fields
       setSelectedHospital("");
@@ -95,10 +129,12 @@ function Appointment() {
     }
   };
 
+
+
   return (
     <div className="app">
       <h1>Hospital Locator & Appointment</h1>
-
+      <h2>"Hospital ID is: "{hospitalId}</h2>
       {/* City Input and Search */}
       <div className="search-section">
         <input
@@ -114,12 +150,12 @@ function Appointment() {
       <form onSubmit={handleSubmit}>
         <label>
           Select Hospital:
-          <select value={selectedHospital} onChange={handleHospitalSelect}>
+          <select value={hospitals.indexOf(selectedHospital)} onChange={(e) => handleHospitalSelect(e)}>
             <option value="" disabled>
               Select a hospital
             </option>
             {hospitals.map((hospital, index) => (
-              <option key={index} value={hospital.display_name}>
+              <option key={index} value={index}>
                 {hospital.display_name}
               </option>
             ))}
@@ -145,6 +181,9 @@ function Appointment() {
         </label>
         <button type="submit">Book Appointment</button>
       </form>
+      
+      {showModal ? <Patient hospitalId={hospitalId} setShowModal={setShowModal} appointmentId={appointmentId} /> : <></>}
+
     </div>
   );
 }

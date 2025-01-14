@@ -32,7 +32,6 @@ const Logout_auth = () => {
       setPostOfficeAddress("")
       setProfilePhoto(null)
 
-      // Redirect to login or home page after logout
       navigate("/login"); // You can change this to whatever route you want to navigate to
     } catch (error) {
       console.error("Error logging out:", error.message);
@@ -41,7 +40,7 @@ const Logout_auth = () => {
 
   return (
     <div>
-      <button onClick={handleLogout}>Logout</button>
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
     </div>
   );
 };

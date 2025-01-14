@@ -1,0 +1,128 @@
+/* General Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f4f6; /* Softer background for better contrast */
+  margin: 0;
+  padding: 0;
+  color: #333333; /* Standardize text color */
+}
+
+/* Appointment History Container */
+.apptmnt-hist {
+  max-width: 1500px; /* Increased width to utilize more screen space */
+  margin: 50px auto; /* Keeps it centered with reduced blank space */
+  padding: 20px 30px; /* Padding remains for content spacing */
+  background-color: #ffffff;
+  border-radius: 12px; /* Softer corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow for focus */
+  border: 1px solid #e5e7eb; /* Subtle border for definition */
+}
+
+
+/* Title */
+.apptmnt-title {
+  font-size: 2rem; /* Larger font for prominence */
+  color: #47E5BC; /* Darker, modern text color */
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid #e5e7eb; /* Subtle divider */
+  padding-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Appointment List */
+.apptmnt-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Appointment Item */
+.apptmnt-item {
+  padding: 20px;
+  margin-bottom: 15px; /* More spacing between items */
+  background-color: #f9fafb; /* Soft, light gray background */
+  border-radius: 10px; /* Rounded corners for a friendly look */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow for layering */
+  border-left: 6px solid #3b82f6; /* Accent color for visual guidance */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.apptmnt-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Stronger hover shadow */
+  background-color: #eef2ff; /* Light blue background for hover */
+}
+
+/* Appointment Details */
+.apptmnt-item h3 {
+  font-size: 1.25rem;
+  color: #1f2937;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.apptmnt-item p {
+  font-size: 1rem;
+  color: #4b5563;
+  margin: 5px 0;
+}
+
+/* Highlighted Labels */
+.apptmnt-item span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2563eb; /* Brighter accent color for labels */
+}
+
+/* Call-to-Action Button */
+.apptmnt-item .action-btn {
+  margin-top: 10px;
+  align-self: flex-end;
+  padding: 8px 15px;
+  background-color: #3b82f6; /* Primary button color */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.apptmnt-item .action-btn:hover {
+  background-color: #2563eb; /* Darker blue for hover */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Elevated shadow */
+}
+
+.apptmnt-item .action-btn:active {
+  background-color: #1d4ed8; /* Pressed state color */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .apptmnt-hist {
+    max-width: 90%; /* Use 90% of the screen width on smaller devices */
+    margin: 20px auto;
+    padding: 15px 20px;
+  }
+
+  .apptmnt-item {
+    padding: 15px;
+  }
+
+  .apptmnt-item h3 {
+    font-size: 1.125rem;
+  }
+
+  .apptmnt-item p {
+    font-size: 0.9rem;
+  }
+
+  .apptmnt-item .action-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
