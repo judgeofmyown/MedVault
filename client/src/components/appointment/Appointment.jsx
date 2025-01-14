@@ -134,7 +134,11 @@ function Appointment() {
   return (
     <div className="app">
       <h1>Hospital Locator & Appointment</h1>
+<<<<<<< HEAD
       <h2>"Hospital ID is: "{hospitalId}</h2>
+=======
+      <h2>"Hospital id is: "{hospitalId}</h2>
+>>>>>>> 42692b503b78713bf2fc869ac32144804605b6f7
       {/* City Input and Search */}
       <div className="search-section">
         <input
