@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getAuth } from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
 import { app, db } from '../appointment/Appointment'
-import "./ApptmntHist.css"
+import './ApptmntHist.css';
 
 function ApptmntHist() {
     const auth = getAuth();

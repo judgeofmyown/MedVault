@@ -5,7 +5,7 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import Patient from "./Patient";
 
 
-// Firebase configuration (replace with your Firebase config)
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyApwKgdClT01ifNPk_9wG2x0_npe45PQr4",
   authDomain: "medvaultauth.firebaseapp.com",
@@ -133,12 +133,8 @@ function Appointment() {
 
   return (
     <div className="app">
-      <h1>Hospital Locator & Appointment</h1>
-<<<<<<< HEAD
-      <h2>"Hospital ID is: "{hospitalId}</h2>
-=======
-      <h2>"Hospital id is: "{hospitalId}</h2>
->>>>>>> 42692b503b78713bf2fc869ac32144804605b6f7
+      <h1>Hospital Appointment</h1>
+      <h2>"Hospital ID: "{hospitalId}</h2>
       {/* City Input and Search */}
       <div className="search-section">
         <input

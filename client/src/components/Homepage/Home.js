@@ -1,24 +1,5 @@
 import React from 'react';
-//import ButtonComp from '../Button/ButtonComp'
 import "./Home.css";
-//import { UserContext } from '../../Context/UserContext/UserContext'
-
-// export default function Home() {
-
-//   const { isLogged } = useContext(UserContext)
-
-//   return (
-//     <>
-//         <div className='Auth-container'>
-//           <ButtonComp Label={"Login"} to={"/login"}/>
-//           <ButtonComp Label={"Register"} to={"/register"}/>
-//           <ButtonComp Label={"Dashboard"} to={isLogged?"/dashboard":"#"} disabled={!isLogged}/>
-//         </div>
-//       </div>
-//     </>
-//   )
-// }
-
 
 const Home = () => {
 

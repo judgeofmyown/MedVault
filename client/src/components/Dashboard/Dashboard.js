@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../Context/UserContext/UserContext";
-import Logout_auth from "../../Authentication/Logout_auth";
-import { auth, db } from "../../Authentication/firebase-config";
-import { doc, getDoc } from "firebase/firestore";
-import "./Dashboard.css";
-import Locator from "../locator/Locator";
-import Appointment from "../appointment/Appointment";
-import ApptmntHist from '../AppointmentHistory/ApptmntHist'
-
-=======
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../Context/UserContext/UserContext'
 import Logout_auth from '../../Authentication/Logout_auth'
@@ -19,7 +7,7 @@ import "./Dashboard.css"
 import Locator from '../locator/Locator'
 import Appointment from '../appointment/Appointment'
 import ApptmntHist from '../AppointmentHistory/ApptmntHist'
->>>>>>> 42692b503b78713bf2fc869ac32144804605b6f7
+
 
 function Dashboard() {
   const {
@@ -81,7 +69,7 @@ function Dashboard() {
   
           {/* User Info */}
           <div className="user-details-container">
-<<<<<<< HEAD
+
             <h3>{fullName}</h3>
             <p>Email: {userEmail}</p>
             <p>Phone: {phone}</p>
@@ -96,31 +84,8 @@ function Dashboard() {
             <button onClick={() => handleFeatureClick("FHIRReport")}>FHIR Report</button>
             <button onClick={() => handleFeatureClick("History")}>History</button>
             <Logout_auth />
-=======
-            <div className="photo">
-              <img src={profilePhoto} alt="Profile" />
-            </div>
-            <div className="user-demographs">
-              <h3>{console.log(fullName)}</h3>
-              <p>Email: {userEmail}</p>
-              <p>Phone: {phone}</p>
-              <p>Permanent Address: {permanentAddress}</p>
-              <p>Post Office Address: {postOfficeAddress}</p>
-            </div>
-          </div>
-          <div className='features-btn'>
-            <button onClick={()=> handleFeatureClick('Locator')}>locator</button>
-            <button onClick={()=> handleFeatureClick('Appointment')}>Appointment</button>
-            <button onClick={()=> handleFeatureClick('Appointment History')}>Appointment History</button>
-          </div>
-          <div className='features-container'>
-            {selectedFeature === 'Locator' && <Locator/>}
-            {selectedFeature === 'Appointment' && <Appointment/>}
-            {selectedFeature === 'Appointment History' && <ApptmntHist/>}
->>>>>>> 42692b503b78713bf2fc869ac32144804605b6f7
           </div>
         </div>
-  
         {/* Main Content */}
         <div className='main-content'>
           {selectedFeature === 'Locator' && <Locator />}

@@ -60,8 +60,8 @@ function App() {
         <div className="footer-section">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/features">Features</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard">Features</a></li>
             <li><a href="/contactus">Contact Us</a></li>
           </ul>
         </div>
