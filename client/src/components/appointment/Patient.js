@@ -4,6 +4,7 @@ import { getDoc, updateDoc } from 'firebase/firestore';
 import { doc } from 'firebase/firestore';
 import { arrayUnion } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import "./Patient.css"
 
 
 function Patient({ hospitalId, setShowModal, appointmentId }) {
@@ -52,14 +53,16 @@ function Patient({ hospitalId, setShowModal, appointmentId }) {
                 body: JSON.stringify(patientResource)
             });
             if(response.ok){
+                const responseData = await response.json();
                 alert("Patient Registered Successfully");
-
+                const patientId = responseData.id;
                 try{
                     console.log(appointmentId)
                     const appointmentRef = doc(db, "appointments", appointmentId);
                     const appointmentSnap = await getDoc(appointmentRef)
                     
                     await updateDoc(appointmentRef, {
+                        patientId: patientId,
                         patient: arrayUnion(patientResource)
                     });
                     const userRef = doc(db, "users", user.uid);
