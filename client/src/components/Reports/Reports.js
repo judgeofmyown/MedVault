@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../appointment/Appointment'
 import "./Reports.css"
-import { useEffect } from 'react'
+import { useEffect,  } from 'react'
 
 function Reports() {
     const auth = getAuth();
@@ -244,4 +244,4 @@ function Reports() {
     )
 }
 
-export default Reports;
+export default Reports

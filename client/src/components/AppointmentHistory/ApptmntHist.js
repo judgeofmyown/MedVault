@@ -10,6 +10,7 @@ function ApptmntHist() {
     const userRef = doc(db, "users", currUser.uid);
     const [appointmentIds, setAppointmentIds] = useState([]);
     const [appointmentDeatils, setAppointmentDetails] = useState([])
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
         getUserData();
@@ -57,6 +58,7 @@ function ApptmntHist() {
             }
         }
         setAppointmentDetails(detailsArray)
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -66,24 +68,29 @@ function ApptmntHist() {
     }, [appointmentIds])
 
     return (
-        <div className="apptmnt-hist">
-        <h1 className="apptmnt-title">Appointment History</h1>
-        {appointmentDeatils.length > 0 ? (<ul className="apptmnt-list">
+        loading ? (
+          <div className="loader">Loading...</div>
+        ) : (
+          <div className="apptmnt-hist">
+            <h1 className="apptmnt-title">Appointment History</h1>
+            {appointmentDeatils.length > 0 ? (
+              <ul className="apptmnt-list">
                 {appointmentDeatils.map((appointment, index) => (
-                <li key={index} className="apptmnt-item">
+                  <li key={index} className="apptmnt-item">
                     <p>Date: {appointment["date-of-appointment"]}</p>
                     <p>Hospital: {appointment["Hospital-name"]}</p>
                     <p>Address: {appointment["Hospital-address"].join(", ")}</p>
                     <p>Patient: {appointment["Patient-FirstName"]} {appointment["Patient-LastName"]}</p>
                     <p>Patient Address: {appointment["Patient-address"]}</p>
-                </li>
+                  </li>
                 ))}
-            </ul>) : (
-                <p>No appointments found</p>
-            )
-        }
-        </div>
-    )
+              </ul>
+            ) : (
+              <p>No appointments found</p>
+            )}
+          </div>
+        )
+      );
 }
 
 export default ApptmntHist
