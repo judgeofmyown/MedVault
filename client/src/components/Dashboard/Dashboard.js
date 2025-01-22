@@ -7,6 +7,7 @@ import "./Dashboard.css"
 import Locator from '../locator/Locator'
 import Appointment from '../appointment/Appointment'
 import ApptmntHist from '../AppointmentHistory/ApptmntHist'
+import Reports from '../Reports/Reports'
 
 
 function Dashboard() {
@@ -90,7 +91,7 @@ function Dashboard() {
         <div className='main-content'>
           {selectedFeature === 'Locator' && <Locator />}
           {selectedFeature === 'Appointment' && <Appointment />}
-          {selectedFeature === 'FHIRReport' && <p>FHIR Report Content coming soon...</p>}
+          {selectedFeature === 'FHIRReport' && <Reports/>}
           {selectedFeature === 'History' && <ApptmntHist/>}
         </div>
       </div>

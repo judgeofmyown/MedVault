@@ -1,112 +1,143 @@
 /* Overlay for modal */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
-  
-  /* Modal container */
-  .modal {
-    background-color: #ffffff;
-    padding: 30px;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  
-  /* Header styles */
-  .modal h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #007bff;
-  }
-  
-  /* Label styles */
-  .modal label {
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    text-align: left;
-    display: block;
-    color: #333333;
-  }
-  
-  /* Input and Select fields */
-  .modal input,
-  .modal select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0 16px 0;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    transition: border-color 0.2s;
-  }
-  
-  .modal input:focus,
-  .modal select:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  /* Gender dropdown */
-  .modal select {
-    background-color: #f8f9fa;
-    cursor: pointer;
-  }
-  
-  /* Buttons */
-  .modal button {
-    margin-top: 15px;
-    padding: 12px 20px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  /* Finish button */
-  .modal button:first-of-type {
-    background-color: #28a745;
-  }
-  
-  .modal button:first-of-type:hover {
-    background-color: #218838;
-  }
-  
-  /* Close button */
-  .modal button:last-of-type {
-    background-color: #dc3545;
-  }
-  
-  .modal button:last-of-type:hover {
-    background-color: #c82333;
-  }
-  
-  /* Animation for modal appearance */
-  @keyframes fadeIn {
-    from {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Modal container */
+.modal {
+  background-color: #ffffff;
+  padding: 40px; /* Increased padding for a more spacious feel */
+  width: 95%;
+  max-width: 600px; /* Increased max-width for better readability */
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* Deeper shadow for depth */
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Header styles */
+.modal h2 {
+  margin-bottom: 25px;
+  font-size: 26px; /* Slightly larger font size */
+  font-weight: bold;
+  color: #0056b3; /* Deeper blue for better visibility */
+}
+
+/* Label styles */
+.modal label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 8px; /* Increased bottom margin */
+  text-align: left;
+  display: block;
+  color: #333333;
+}
+
+/* Input and Select fields */
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 14px; /* Slightly increased padding */
+  margin: 8px 0 20px 0; /* Increased bottom margin for spacing */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* More rounded corners */
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s; /* Added transition for focus effect */
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: #0056b3;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 86, 179, 0.4);
+}
+
+/* Gender dropdown */
+.modal select {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+/* Buttons */
+.modal button {
+  margin-top: 15px;
+  padding: 14px 25px; /* Slightly increased padding */
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 8px; /* More rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Added scale effect on hover */
+}
+
+/* Finish button */
+.modal button:first-of-type {
+  background-color: #007bff;
+}
+
+.modal button:first-of-type:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Close button */
+.modal button:last-of-type {
+  background-color: #dc3545;
+}
+
+.modal button:last-of-type:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+/* Animation for modal appearance */
+@keyframes fadeIn {
+  from {
       opacity: 0;
       transform: scale(0.9);
-    }
-    to {
+  }
+  to {
       opacity: 1;
       transform: scale(1);
-    }
   }
-  
+}
+
+/* Adjust spacing between elements for better UX */
+.modal input + label,
+.modal select + label {
+  margin-top: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .modal {
+      padding: 20px; /* Adjust padding for smaller screens */
+      width: 90%;
+  }
+
+  .modal h2 {
+      font-size: 22px;
+  }
+
+  .modal input,
+  .modal select {
+      padding: 12px;
+      font-size: 14px;
+  }
+
+  .modal button {
+      padding: 12px 20px;
+      font-size: 14px;
+  }
+}
