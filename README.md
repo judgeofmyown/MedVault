@@ -54,3 +54,7 @@ MedVault/
 git clone https://github.com/pratyush-015/MedVault.git
 cd MedVault
 ```
+
+## 📽️ Demo Video
+
+[![Watch the video](https://img.youtube.com/vi/wxb-c2v5jUw/0.jpg)](https://www.youtube.com/watch?v=wxb-c2v5jUw)
