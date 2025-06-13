@@ -24,7 +24,7 @@ Built using **React.js, Node.js, Express.js, and Docker**, this system ensures a
 ✅ **User Authentication** – Secure **login/signup** for patients using Firebase 🔐  
 ✅ **Appointment Booking** – Users can schedule appointments easily 📅  
 ✅ **FHIR Integration** – Seamless management of **patients, hospitals, and medical records** 🏥  
-✅ **Hospital Locator** – Find hospitals nearby using **Google Maps API** 📍  
+✅ **Hospital Locator** – Find hospitals nearby using **Open Street API** 📍  
 ---
 
 ## 🛠 Tech Stack  
